@@ -31,4 +31,40 @@ function randArray(k) {
 }
 
 console.log(randArray(5)); // 5 випадкових цілих чисел в діапазоні 1-500
+//6 завдання
+function calc(a, b, op) {
+  switch (op) {
+    case 1:
+      return a - b;
+    case 2:
+      return a * b;
+    case 3:
+      return a / b;
+    default:
+      return a + b;
+  }
+}
 
+console.log(calc(10, 3, 1)); // виведе 7 в консоль
+//7 завдання
+function findUnique(arr) {
+  const set = new Set(arr);
+  return set.size === arr.length;
+}
+
+console.log(findUnique([1, 2, 3, 5, 3])); // виведе false в консоль
+console.log(findUnique([1, 2, 3, 5, 11])); // виведе true в консоль
+//4 завдання
+function compact(newArray) {
+  const result = [];
+  for (let i = 0; i < newArray.length; i++) {
+    if (!result.includes(newArray[i])) {
+      result.push(newArray[i]);
+    }
+  }
+  return result;
+}
+
+const newArray = [5, 3, 4, 5, 6, 7, 3];
+const secondArray = compact(newArray);
+console.log(secondArray); // [5, 3, 4, 6, 7]
