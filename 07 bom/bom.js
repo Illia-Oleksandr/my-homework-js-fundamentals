@@ -91,3 +91,34 @@ myButton.addEventListener('mouseenter', () => {
 myButton.addEventListener('mouseleave', () => {
   console.log('Mouse is not on me!');
 });
+//6 завдання
+function trackWindowSize() {
+  // Отримуємо висоту та ширину вікна браузера
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // Виводимо значення в консоль
+  console.log(`Ширина вікна: ${width}px, Висота вікна: ${height}px`);
+}
+
+// Викликаємо функцію для відслідковування зміни розміру вікна браузера
+window.addEventListener('resize', trackWindowSize);
+//7 завдання
+const citiesByCountry = {
+  'Germany': ['Berlin', 'Munich', 'Hamburg'],
+  'USA': ['New York', 'Los Angeles', 'Chicago'],
+  'Ukraine': ['Kyiv', 'Lviv', 'Odessa'],
+};
+const countrySelect = document.getElementById('country');
+const citiesSelect = document.getElementById('cities');
+citiesSelect.innerHTML = '';
+const selectedCountry = countrySelect.value;
+const cities = citiesByCountry[selectedCountry];
+
+for (let i = 0; i < cities.length; i++) {
+  const option = document.createElement('option');
+  option.value = cities[i];
+  option.text = cities[i];
+  citiesSelect.appendChild(option);
+}
+const selectedCityElement = document.getElementById('selected-city');
