@@ -1,0 +1,10 @@
+select {
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
+}
+
+button {
+    padding: 5px;
+    margin: 10px;
+}
