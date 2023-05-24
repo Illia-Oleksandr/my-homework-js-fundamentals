@@ -1,67 +1,51 @@
 //1 task
-// Знаходжу всі <h2> з класом "head"
-const headers = $('h2.head');
+$(document).ready(function() {
+  // Знаходимо всі <h2> з класом "head" і змінюємо колір фону
+  $("h2.head").css("background-color", "green");
 
-// Змінюю колір фону на зелений для знайдених елементів
-headers.css('background-color', 'green');
-
-// Знаходжу всі елементи з класом "inner" серед знайдених <h2>
-const innerElements = $('h2.head .inner');
-
-// Змінюю розмір шрифту на 35px для знайдених елементів
-innerElements.css('font-size', '35px');
+  // Знаходимо елементи з класом "inner" всередині знайдених <h2> і змінюємо розмір шрифту
+  $("h2.head .inner").css("font-size", "35px");
+});
 
 //2 task
-// Отримую всі посилання на сторінці
-const links = $('a');
-
-// Проходжусь по кожному посиланню
-links.each(function() {
-let link = $(this);
-
-// Перевіряю, чи href починається з "https://"
-if (link.attr('href').startsWith('https://')) {
-// Додаю атрибут target="_blank"
-link.attr('target', '_blank');
-}
+$(document).ready(function() {
+  // Знаходимо всі посилання <a>, які починаються на "https://"
+  $("a[href^='https://']").attr("target", "_blank");
 });
+
 
 //3 task
-// Знаходжу всі теги <h3>
-const newHeaders = $('h3');
+$(document).ready(function() {
+  // Знаходимо всі <div>, які стоять безпосередньо після <h3>
+  var divs = $("h3 + div");
 
-// Проходжусь по кожному <h3>
-newHeaders.each(function() {
-let header = $(this);
-
-// Знаходжу наступний елемент після <h3>
-const nextElement = header.next();
-
-// Перевіряю, чи є цей наступний елемент <div>
-if (nextElement && nextElement.is('div')) {
-// Вставляю <div> перед <h3>
-header.before(nextElement);
-}
+  // Переміщуємо кожен <div> перед відповідним <h3>
+  divs.each(function() {
+    var h3 = $(this).prev("h3");
+    $(this).insertBefore(h3);
+  });
 });
 
+
 //4 task
-// Отримую посилання на всі чекбокси
-const checkboxes = $('input[type="checkbox"]');
+$(document).ready(function() {
+  // Знаходимо всі чекбокси
+  var checkboxes = $("input[type='checkbox']");
 
-// Лічильник позначених чекбоксів
-let checkedCount = 0;
+  // Створюємо лічильник для відстеження кількості вибраних чекбоксів
+  var count = 0;
 
-// Функція, яка слідкує за змінами у чекбоксах
-function handleCheckboxChange() {
-if (this.checked) {
-    checkedCount++;
-
-if (checkedCount >= 3) {
-  // Деактивую всі чекбокси
-  checkboxes.prop('disabled', true);
+  // Додаємо обробник події для кожного чекбоксу
+  checkboxes.change(function() {
+    if (this.checked) {
+      count++; // Збільшуємо лічильник, якщо чекбокс вибрано
+    } else {
+      count--; // Зменшуємо лічильник, якщо чекбокс скасовано
     }
-  }
-}
 
-// Додаю обробник подій до кожного чекбоксу
-checkboxes.on('change', handleCheckboxChange);
+    if (count >= 3) {
+      // Якщо вибрано 3 чекбокси або більше, вимикаємо всі чекбокси
+      checkboxes.attr("disabled", true);
+    }
+  });
+});
